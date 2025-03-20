@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Random Picker</title>
+  </head>
+  <body>
+    <h1>Random Picker</h1>
+    <div id="countdown"></div>
+    <div id="result"></div>
+
+    <script>
+      // Runs once the page is fully loaded
+      window.onload = function() {
+        // Parse URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Collect all 'item' params into an array
+        const items = urlParams.getAll('item');
+
+        // If no items, show a message and stop
+        if (items.length === 0) {
+          document.getElementById('result').textContent = 'No items were provided in the URL!';
+          return;
+        }
+
+        // Initialize countdown
+        let count = 5;
+        const countdownElement = document.getElementById('countdown');
+        countdownElement.textContent = count;
+
+        // Create an interval that runs every 1 second
+        const intervalId = setInterval(() => {
+          count -= 1;
+          countdownElement.textContent = count;
+
+          if (count <= 0) {
+            clearInterval(intervalId);
+
+            // Pick a random item once countdown is finished
+            const randomIndex = Math.floor(Math.random() * items.length);
+            const chosenItem = items[randomIndex];
+
+            // Display the chosen item
+            document.getElementById('result').textContent = `Chosen: ${chosenItem}`;
+          }
+        }, 1000);
+      };
+    </script>
+  </body>
+</html>
