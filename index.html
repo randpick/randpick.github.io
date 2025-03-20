@@ -3,6 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <title>Random Picker</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: linear-gradient(to right, #ff99cc, #99ccff);
+      }
+
+      h1 {
+        font-size: 3em;
+        margin-top: 50px;
+        color: #ffffff;
+        text-shadow: 2px 2px #000000;
+      }
+
+      #countdown {
+        font-size: 5em;
+        margin-top: 30px;
+        color: #ffd700;
+        text-shadow: 2px 2px #8b0000;
+      }
+
+      #result {
+        font-size: 4em;
+        margin-top: 20px;
+        color: #ffffff;
+        text-shadow: 2px 2px #00008b;
+      }
+    </style>
   </head>
   <body>
     <h1>Random Picker</h1>
@@ -10,7 +40,6 @@
     <div id="result"></div>
 
     <script>
-      // Runs once the page is fully loaded
       window.onload = function() {
         // Parse URL parameters
         const urlParams = new URLSearchParams(window.location.search);
@@ -20,7 +49,7 @@
 
         // If no items, show a message and stop
         if (items.length === 0) {
-          document.getElementById('result').textContent = 'No items were provided in the URL!';
+          document.getElementById('result').textContent = 'No items provided in the URL!';
           return;
         }
 
